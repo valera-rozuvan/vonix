@@ -12,6 +12,11 @@
             this.height = state.pfHeight;
 
             this.paper = Raphael(state.pField[0], this.width, this.height);
+
+            this.availableTests = [
+                'drawTest',
+                'drawTest2'
+            ];
         };
 
         RaphaelGraphics.prototype.drawTest = function () {
@@ -86,7 +91,9 @@
 
                 event.preventDefault();
 
-                el = _this.paper.getElementByPoint(event.pageX, event.pageY);
+                el = _this.paper.getElementByPoint(
+                    event.clientX, event.clientY
+                );
 
                 if (!el) {
                     return;

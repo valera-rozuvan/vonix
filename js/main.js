@@ -31,17 +31,20 @@
             new Initialize(state);
 
             require([state.graphicsEngine], function (G) {
-                var g = new G(state);
-
-                _.each(_.keys(g.prototype), function (value, index, list) {
-                    console.log('value = ' + value + '; index = ' + index + '.');
-                });
-
-                // _.each(g, function (value, index, list) {
-                //     console.log('value = ' + value + '; index = ' + index + '.');
-                // });
+                var g = new G(state),
+                    selectEl = $('#test_id');
 
                 // For now, we are just playing with test functions.
+                _.each(g.availableTests, function (value, index, list) {
+                    console.log('value = ' + value + '; index = ' + index + '.');
+
+                    selectEl.append(
+                        '<option value="' + value + '">' +
+                            value + '()' +
+                        '</option>'
+                    );
+                });
+
                 $('#test_id').change(function (event) {
                     var optionVal;
 
@@ -50,7 +53,7 @@
                     g[optionVal].call(g);
                 });
 
-                g.drawTest();
+                g[g.availableTests[0]].call(g);
             });
         });
     });

@@ -20,7 +20,7 @@
 
     requirejs(
         ['jquery', 'underscore', 'initialize'],
-        function ($, _, initialize) {
+        function ($, _, Initialize) {
 
         var state = {};
 
@@ -28,9 +28,23 @@
         _.noConflict();
 
         $(document).ready(function () {
-            initialize(state);
+            new Initialize(state);
 
-            console.log(state);
+            require([state.graphicsEngine], function (G) {
+                var g = new G(state);
+
+                $('#test_id').change(function (event) {
+                    var optionVal;
+
+                    optionVal = $(event.target).find('option:selected').val();
+
+                    g[optionVal].call(g);
+                });
+
+                // For now, we just run a test functions.
+                g.drawTest();
+                // g.drawTest2();
+            });
         });
     });
 }());

@@ -1,31 +1,23 @@
 (function () {
-    define(['jquery', 'raphael'], function ($, R) {
-        var initialize = function (state) {
+    define(['jquery', 'raphael', 'logger'], function ($, R, Logger) {
+        var Initialize;
+
+        Initialize = function (state) {
+            var logger = new Logger;
+
+            state.logger = logger;
+
             state.name = 'VOnix';
             state.version = '0.0.1';
 
-            $('body').html('<h1>Hello, world!</h1>');
+            state.pField = $('#playing_field');
 
-            drawTest();
+            state.pfWidth = state.pField.width();
+            state.pfHeight = state.pField.height();
+
+            state.graphicsEngine = 'raphael_graphics';
         };
 
-        return initialize;
-
-        // Test drawing taken from http://raphaeljs.com/ (official site).
-        function drawTest() {
-            var paper, circle;
-
-            // Creates canvas 320 × 200 at 10, 50
-            paper = Raphael(10, 50, 320, 200);
-
-            // Creates circle at x = 50, y = 40, with radius 10
-            circle = paper.circle(50, 40, 10);
-
-            // Sets the fill attribute of the circle to red (#f00)
-            circle.attr('fill', '#f00');
-
-            // Sets the stroke attribute of the circle to white
-            circle.attr('stroke', '#fff');
-        }
+        return Initialize;
     });
 }());

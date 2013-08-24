@@ -36,8 +36,6 @@
 
                 // For now, we are just playing with test functions.
                 _.each(g.availableTests, function (value, index, list) {
-                    console.log('value = ' + value + '; index = ' + index + '.');
-
                     selectEl.append(
                         '<option value="' + value + '">' +
                             value + '()' +

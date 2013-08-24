@@ -33,6 +33,15 @@
             require([state.graphicsEngine], function (G) {
                 var g = new G(state);
 
+                _.each(_.keys(g.prototype), function (value, index, list) {
+                    console.log('value = ' + value + '; index = ' + index + '.');
+                });
+
+                // _.each(g, function (value, index, list) {
+                //     console.log('value = ' + value + '; index = ' + index + '.');
+                // });
+
+                // For now, we are just playing with test functions.
                 $('#test_id').change(function (event) {
                     var optionVal;
 
@@ -41,9 +50,7 @@
                     g[optionVal].call(g);
                 });
 
-                // For now, we just run a test functions.
                 g.drawTest();
-                // g.drawTest2();
             });
         });
     });

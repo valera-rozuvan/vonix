@@ -15,7 +15,8 @@
 
             this.availableTests = [
                 'drawTest',
-                'drawTest2'
+                'drawTest2',
+                'drawTest3'
             ];
         };
 
@@ -121,6 +122,64 @@
                         el.attr('fill', colors[1]);
                     }
                 }
+            }
+        }
+
+        RaphaelGraphics.prototype.drawTest3 = function () {
+            var circle, fS, rectSize, numCols, numRows, outlineWidth, colors,
+                _this;
+
+            this.clearLog();
+            this.log(
+                'Click on any square. Clicking multiple times changes the ' +
+                'square\'s color.'
+            );
+
+            fS = [];
+
+            rectSize = 12;
+            outlineWidth = 1;
+
+            colors = ['#CCFFFF', '#F00', '#000', '#339', '#339000'];
+
+            _this = this;
+
+            numCols = Math.floor(this.width / (rectSize + 2));
+            numRows = Math.floor(this.height / (rectSize + 2));
+
+            this.paper.clear();
+
+            _.each(_.range(0, numCols * numRows, 1), createRectangle, this);
+
+            // Draw borders around the field.
+            _.each(_.range(0, numCols * numRows - numCols + 1, numCols), colorBorder, this);
+            _.each(_.range(numCols - 1, numCols * (numRows + 1) - 1, numCols), colorBorder, this);
+
+            _.each(_.range(1, numCols - 1, 1), colorBorder, this);
+            _.each(_.range(1, numCols - 1, 1), colorBorder, this);
+
+            return;
+
+            function createRectangle(value, index, list) {
+                var rect, xPos, yPos;
+
+                yPos = 1 + Math.floor(value / numCols) * (rectSize + 2);
+                xPos = 1 + value * (rectSize + 2) - (yPos - 1) * numCols;
+
+                rect = this.paper.rect(xPos, yPos, rectSize, rectSize, 0);
+
+                rect.attr('fill', colors[0]);
+                rect.attr('stroke', '#000');
+                rect.attr('stroke-width', outlineWidth);
+
+                rect.data('index', index);
+                rect.data('color', 0);
+
+                fS.push(rect);
+            }
+
+            function colorBorder(value, index, list) {
+                fS[value].attr('fill', colors[1]);
             }
         }
 

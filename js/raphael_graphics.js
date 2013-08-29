@@ -127,7 +127,7 @@
 
         RaphaelGraphics.prototype.drawTest3 = function () {
             var circle, fS, rectSize, numCols, numRows, outlineWidth, colors,
-                _this;
+                _this, speed, coords, updateInterval;
 
             this.clearLog();
             this.log(
@@ -152,11 +152,48 @@
             _.each(_.range(0, numCols * numRows, 1), createRectangle, this);
 
             // Draw borders around the field.
-            _.each(_.range(0, numCols * numRows - numCols + 1, numCols), colorBorder, this);
-            _.each(_.range(numCols - 1, numCols * (numRows + 1) - 1, numCols), colorBorder, this);
 
+            // Left side.
+            _.each(
+                _.range(0, numCols * numRows - numCols + 1, numCols),
+                colorBorder,
+                this
+            );
+
+            // Right side.
+            _.each(
+                _.range(numCols - 1, numCols * (numRows + 1) - 1, numCols),
+                colorBorder,
+                this
+            );
+
+            // Top.
             _.each(_.range(1, numCols - 1, 1), colorBorder, this);
-            _.each(_.range(1, numCols - 1, 1), colorBorder, this);
+
+            // Bottom.
+            _.each(
+                _.range(
+                    1 + (numRows - 1) * numCols,
+                    (numRows - 1) * numCols + numCols - 1,
+                    1
+                ),
+                colorBorder,
+                this
+            );
+
+            speed = {
+                x: +1,
+                y: +1
+            };
+
+            coords = {
+                x: Math.random() * numCols,
+                y: Math.random() * numRows
+            };
+
+            updateInterval = window.setInterval(function () {
+
+            }, 50);
 
             return;
 

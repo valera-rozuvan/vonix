@@ -38,7 +38,7 @@
 
         RaphaelGraphics.prototype.drawTest2 = function () {
             var circle, fS, rectSize, numCols, numRows, outlineWidth, colors,
-                _this;
+                _this, rectSizeP2;
 
             this.clearLog();
             this.log(
@@ -49,14 +49,15 @@
             fS = [];
 
             rectSize = 12;
+            rectSizeP2 = rectSize + 2;
             outlineWidth = 1;
 
             colors = ['#CCFFFF', '#F00', '#000', '#339', '#339000'];
 
             _this = this;
 
-            numCols = Math.floor(this.width / (rectSize + 2));
-            numRows = Math.floor(this.height / (rectSize + 2));
+            numCols = Math.floor(this.width / rectSizeP2);
+            numRows = Math.floor(this.height / rectSizeP2);
 
             this.paper.clear();
 
@@ -72,8 +73,8 @@
             function createRectangle(value, index, list) {
                 var rect, xPos, yPos;
 
-                yPos = 1 + Math.floor(value / numCols) * (rectSize + 2);
-                xPos = 1 + value * (rectSize + 2) - (yPos - 1) * numCols;
+                yPos = 1 + Math.floor(value / numCols) * rectSizeP2;
+                xPos = 1 + value * rectSizeP2 - (yPos - 1) * numCols;
 
                 rect = this.paper.rect(xPos, yPos, rectSize, rectSize, 0);
 
@@ -127,7 +128,7 @@
 
         RaphaelGraphics.prototype.drawTest3 = function () {
             var circle, fS, rectSize, numCols, numRows, outlineWidth, colors,
-                _this, speed, coords, updateInterval;
+                _this, speed, coords, updateInterval, rectSizeP2;
 
             this.clearLog();
             this.log(
@@ -138,14 +139,15 @@
             fS = [];
 
             rectSize = 12;
+            rectSizeP2 = 12 + 2;
             outlineWidth = 1;
 
             colors = ['#CCFFFF', '#F00', '#000', '#339', '#339000'];
 
             _this = this;
 
-            numCols = Math.floor(this.width / (rectSize + 2));
-            numRows = Math.floor(this.height / (rectSize + 2));
+            numCols = Math.floor(this.width / rectSizeP2);
+            numRows = Math.floor(this.height / rectSizeP2);
 
             this.paper.clear();
 
@@ -200,8 +202,8 @@
             function createRectangle(value, index, list) {
                 var rect, xPos, yPos;
 
-                yPos = 1 + Math.floor(value / numCols) * (rectSize + 2);
-                xPos = 1 + value * (rectSize + 2) - (yPos - 1) * numCols;
+                yPos = 1 + Math.floor(value / numCols) * rectSizeP2;
+                xPos = 1 + value * rectSizeP2 - (yPos - 1) * numCols;
 
                 rect = this.paper.rect(xPos, yPos, rectSize, rectSize, 0);
 
